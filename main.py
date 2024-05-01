@@ -80,7 +80,7 @@ for row in range(len(extra_params_array)):
   for column in range(len(extra_params_array[row])):
     extra_params_array[row][column].grid(row=row, column=column, sticky='w')
 
-calculate_button = tk.Button(frame_params, text='Рассчитать', command=start_calculation)
+calculate_button = tk.Button(frame_params, text='Рассчитать', command=lambda: start_calculation(*prepare_params()))
 calculate_button.pack(pady=15)
 
 # Вывод результатов
@@ -105,6 +105,9 @@ for row in range(len(result_array)):
   for column in range(len(result_array[row])):
     result_array[row][column].grid(row=row, column=column, sticky='w')
 
+def prepare_params():
+  # TODO: Дописать функцию формирования параметров
+  return []
 # Создание второго фрейма и размещение его с помощью grid
 # frame_graph = tk.Frame(window, bg="white")
 # frame_graph.grid(row=0, column=1,sticky="nsew")
