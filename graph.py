@@ -1,13 +1,12 @@
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
-def create_graph():
-  x = [1, 2, 3, 4, 5]
-  y = [2, 3, 5, 1, 11]
+# TODO: Добавить возможность отображения точек внизу и на графике отображения min
+def create_graph(x, y):
   plt.plot(x, y)
   plt.xlabel('X')
-  plt.ylabel('Y')
-  plt.title('График')
+  plt.ylabel('F(x)')
+  plt.title('График функции')
   plt.grid(True)
   plt.show()
 
