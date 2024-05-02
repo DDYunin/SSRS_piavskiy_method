@@ -118,7 +118,6 @@ for row in range(len(result_array)):
     result_array[row][column].grid(row=row, column=column, sticky='w')
 
 def prepare_params():
-  # TODO: Дописать функцию формирования параметров
   func_coef = [
     float(coef_sin.get()),
     float(argument_sin.get()),
@@ -144,9 +143,5 @@ def prepare_params():
   ]
   print([func_coef, borders, error, max_iteration, mode, param, controls])
   return [func_coef, borders, error, max_iteration, mode, param, controls]
-# Создание второго фрейма и размещение его с помощью grid
-# frame_graph = tk.Frame(window, bg="white")
-# frame_graph.grid(row=0, column=1,sticky="nsew")
-# window.grid_columnconfigure(1, weight=1)
 
 window.mainloop()

@@ -13,9 +13,3 @@ def create_graph(x, y, x_points, y_points, x_min, y_min):
   plt.grid(True)
   plt.legend()
   plt.show()
-
-  # # Вставка графика в интерфейс Tkinter
-  # fig = plt.gcf()
-  # canvas = FigureCanvasTkAgg(fig, master=window)
-  # canvas.draw()
-  # canvas.get_tk_widget().pack()

@@ -41,9 +41,7 @@ def start_calculation(func_coef, borders, error, max_number_iter, mode, param, c
   result = []
   print('Начало вычислений')
   # Высчитываем всё до конца
-  # TODO: разобраться как пересчитывать значения для y_array, ибо сейчас это неверно
   if (mode == 'fixed'):
-    # TODO: добавить условие на ошибку
     while (number_iteration < max_number_iter):
       x_array = np.sort(x_array)
       y_array = np.vectorize(calculate_function)(x_array, *func_coef)
@@ -55,7 +53,6 @@ def start_calculation(func_coef, borders, error, max_number_iter, mode, param, c
         result = [next_x, number_iteration, x_array]
         break
   else:
-    # TODO: добавить условие на ошибку
     while (number_iteration < max_number_iter):
       x_array = np.sort(x_array)
       y_array = np.vectorize(calculate_function)(x_array, *func_coef)
