@@ -50,9 +50,17 @@ option = tk.StringVar(value='fixed')
 radio_frame = tk.Frame(frame_params, bg="lightgray")
 radio_frame.pack()
 
-radio_button = tk.Radiobutton(radio_frame, text="Фиксированное значение параметра m", variable=option, value='fixed', bg="lightgray")
+def toggle_entry_state():
+  if option.get() == 'fixed':
+    input_param_r.config(state="disabled")
+    input_param_m.config(state="normal")
+  else:
+    input_param_r.config(state="normal")
+    input_param_m.config(state="disabled")
+
+radio_button = tk.Radiobutton(radio_frame, text="Фиксированное значение параметра m", variable=option, value='fixed', bg="lightgray", command=toggle_entry_state)
 radio_button.pack(anchor='w')
-radio_button1 = tk.Radiobutton(radio_frame, text="Адаптивное значение параметра m", variable=option, value='responsive', bg="lightgray")
+radio_button1 = tk.Radiobutton(radio_frame, text="Адаптивное значение параметра m", variable=option, value='responsive', bg="lightgray", command=toggle_entry_state)
 radio_button1.pack(anchor='w')
 
 # Дополнительные параметры
@@ -91,9 +99,13 @@ result_lbl_y = tk.Label(result_frame, text='Найденный минимум: '
 result_lbl_x = tk.Label(result_frame, text='Найденная координата: ', font=("Arial", 12), bg="lightgray")
 result_lbl_number = tk.Label(result_frame, text='Число проведенных операций ', font=("Arial", 12), bg="lightgray")
 
-result_input_y = tk.Entry(result_frame, font=("Arial", 12, 'bold'), justify="right", state='readonly')
-result_input_x = tk.Entry(result_frame, font=("Arial", 12, 'bold'), justify="right", state='readonly')
-result_input_number = tk.Entry(result_frame, font=("Arial", 12, 'bold'), justify="right", state='readonly')
+entry_var_y = tk.StringVar(value="")
+entry_var_x = tk.StringVar(value="")
+entry_var_number = tk.StringVar(value="")
+
+result_input_y = tk.Entry(result_frame, font=("Arial", 12, 'bold'), justify="right", state='readonly', textvariable=entry_var_y)
+result_input_x = tk.Entry(result_frame, font=("Arial", 12, 'bold'), justify="right", state='readonly', textvariable=entry_var_x)
+result_input_number = tk.Entry(result_frame, font=("Arial", 12, 'bold'), justify="right", state='readonly', textvariable=entry_var_number)
 
 
 result_array = [
@@ -107,7 +119,31 @@ for row in range(len(result_array)):
 
 def prepare_params():
   # TODO: Дописать функцию формирования параметров
-  return []
+  func_coef = [
+    float(coef_sin.get()),
+    float(argument_sin.get()),
+    float(coef_cos.get()),
+    float(argument_cos.get())
+  ]
+  borders = [
+    float(range_left_border.get()),
+    float(range_right_border.get())
+  ]
+  error = float(input_param_error.get())
+  max_iteration = float(input_param_number_iter.get())
+  mode = option.get()
+  param = None
+  if (mode == 'fixed'):
+    param = float(input_param_m.get())
+  else:
+    param = float(input_param_r.get())
+  controls = [
+    entry_var_y,
+    entry_var_x,
+    entry_var_number
+  ]
+  print([func_coef, borders, error, max_iteration, mode, param, controls])
+  return [func_coef, borders, error, max_iteration, mode, param, controls]
 # Создание второго фрейма и размещение его с помощью grid
 # frame_graph = tk.Frame(window, bg="white")
 # frame_graph.grid(row=0, column=1,sticky="nsew")
